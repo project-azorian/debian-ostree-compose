@@ -10,22 +10,6 @@ rm -rf $WORKDIR
 mkdir -p $WORKDIR
 cd $WORKDIR
 
-#mkdir -p --mode=0755 \
-#    usr/bin \
-#    usr/lib \
-#    usr/sbin
-#ln -s usr/bin bin
-#ln -s usr/lib lib
-#ln -s usr/sbin sbin
-
-#debootstrap \
-#    --include=ostree,grub2,dracut \
-#    --exclude=initramfs-tools \
-#    --merged-usr \
-#    stretch \
-#    $WORKDIR \
-#    https://deb.debian.org/debian
-
 multistrap -d $WORKDIR -f $STRAPCONF
 
 mv etc usr/etc
