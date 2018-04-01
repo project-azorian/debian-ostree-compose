@@ -10,7 +10,20 @@ rm -rf $WORKDIR
 mkdir -p $WORKDIR
 cd $WORKDIR
 
+dpkg-deb -x /debs/ostree-boot_2018.2-1~bpo9+1_amd64.deb .
 multistrap -d $WORKDIR -f $STRAPCONF
+
+# ----
+
+rm -rf dev/*
+cat > password <<EOF
+#!/bin/sh
+/bin/echo -en "vagrant\nvagrant\n" | passwd root
+EOF
+chroot . /bin/sh password
+rm password
+
+# ----
 
 mv etc usr/etc
 mkdir sysroot
@@ -23,7 +36,7 @@ for d in bin lib lib64 sbin; do
     ln -s usr/$d $d
 done
 
-rm -r dev/* var/*
+rm -r var/*
 rm -r home opt srv root usr/local mnt media tmp
 ln -s var/home home
 ln -s var/opt opt
