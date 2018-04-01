@@ -8,6 +8,7 @@ REF=debian/9/x86_64/minimal
 
 docker build -t $TAG $SYNCDIR
 docker run \
+    -it \
     --rm \
     -v $OSTREE:/ostree:z \
     -v $CONF:/conf:ro,z \
