@@ -1,6 +1,6 @@
 FROM debian:9
 RUN apt-get update && \
-    apt-get install -y build-essential ostree multistrap apt-transport-https devscripts
+    apt-get install -y build-essential ostree multistrap apt-transport-https devscripts vim
 RUN apt-get update && apt-get install -y \
         attr \
         autoconf \
