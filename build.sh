@@ -10,6 +10,7 @@ docker build -t $TAG $SYNCDIR
 docker run \
     -it \
     --rm \
+    --privileged \
     -v $OSTREE:/ostree:z \
     -v $CONF:/conf:ro,z \
     $TAG \
