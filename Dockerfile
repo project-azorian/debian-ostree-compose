@@ -48,6 +48,8 @@ RUN mkdir -p /debs && \
     dpkg-scanpackages . | gzip > Packages.gz && \
     dpkg-scansources . > Sources
 
+RUN apt-get update && apt-get install -y rsync
+
 VOLUME /work
 VOLUME /ostree
 COPY build-atomic-debian.sh /
