@@ -16,12 +16,6 @@ multistrap -d $WORKDIR -f $STRAPCONF
 # ----
 
 rm -rf dev/*
-cat > password <<EOF
-#!/bin/sh
-/bin/echo -en "vagrant\nvagrant\n" | passwd root
-EOF
-chroot . /bin/sh password
-rm password
 
 # ----
 
@@ -29,8 +23,8 @@ mv etc usr/etc
 mkdir sysroot
 ln -s sysroot/ostree ostree
 
-mkdir -p usr/bin usr/lib usr/lib64 usr/sbin
 for d in bin lib lib64 sbin; do
+    mkdir -p usr/$d
     cp -a $d/* usr/$d
     rm -r $d
     ln -s usr/$d $d
