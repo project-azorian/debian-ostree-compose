@@ -58,13 +58,6 @@ mv etc usr/etc
 mkdir sysroot
 ln -s sysroot/ostree ostree
 
-for d in bin lib lib64 sbin; do
-    mkdir -p usr/$d
-    cp -Pr $d/* usr/$d
-    rm -rf $d
-    ln -s usr/$d $d
-done
-
 rm -r home opt srv root usr/local mnt media
 ln -s var/home home
 ln -s var/opt opt
