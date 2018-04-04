@@ -12,43 +12,28 @@ cd $WORKDIR
 
 # ----
 
-mkdir dev
-mount -o bind /dev dev
-
 multistrap -d $WORKDIR -f $STRAPCONF
 
-umount dev
+# ----
+
+cp -a /dev/* dev/
+
+cat > setup.sh <<EOF
+export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
+export LC_ALL=C LANGUAGE=C LANG=C
+/var/lib/dpkg/info/dash.preinst install
+dpkg --configure -a
+EOF
+chroot . /bin/bash /setup.sh
+rm setup.sh
 
 # ----
 
-#mkdir -p etc/ssh
-#touch etc/ssh/ssh_host_rsa_key
-#touch etc/ssh/ssh_host_ecdsa_key
-#touch etc/ssh/ssh_host_ed25519_key
-
-
-# ----
-
-#mount -o bind /dev dev
-
-#cat > setup.sh <<EOF
-#export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
-#export LC_ALL=C LANGUAGE=C LANG=C
-#/var/lib/dpkg/info/dash.preinst install
-#dpkg --configure -a
-#EOF
-#chroot . /bin/bash /setup.sh
-#rm setup.sh
-
-#umount dev
-
-# ----
-
-rm -rf dev/*
-rm -rf var/*
 #rm etc/ssh/ssh_host_*_key
 
 # ----
+rm -rf dev/*
+rm -rf var/*
 
 mv etc usr/etc
 mkdir sysroot
