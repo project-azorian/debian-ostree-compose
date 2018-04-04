@@ -32,6 +32,15 @@ rm setup.sh
 #rm etc/ssh/ssh_host_*_key
 
 # ----
+
+mv var/lib/dpkg usr/lib/dpkg-db
+
+cat > usr/lib/tmpfiles.d/dpkg-db.conf <<EOF
+L /var/lib/dpkg - - - - ../../usr/lib/dpkg-db
+EOF
+
+# ----
+
 rm -rf dev/*
 rm -rf var/*
 
@@ -51,7 +60,6 @@ ln -s run/media media
 
 # ----
 
-mkdir -p --mode=0755 usr/lib/tmpfiles.d
 cat > usr/lib/tmpfiles.d/debian-atomic.conf <<EOF
 d /var/log/journal 0755 root root -
 L /var/home - - - - ../sysroot/home
