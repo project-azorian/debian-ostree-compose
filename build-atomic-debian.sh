@@ -51,8 +51,8 @@ ln -s run/media media
 
 # ----
 
-mkdir -p --mode=0755 usr/etc/tmpfiles.d
-cat > usr/etc/tmpfiles.d/debian-atomic.conf <<EOF
+mkdir -p --mode=0755 usr/lib/tmpfiles.d
+cat > usr/lib/tmpfiles.d/debian-atomic.conf <<EOF
 d /var/log/journal 0755 root root -
 L /var/home - - - - ../sysroot/home
 d /var/opt 0755 root root -
