@@ -12,10 +12,6 @@ cd $WORKDIR
 
 # ----
 
-dpkg-deb -x /debs/ostree-boot_2018.2-1~bpo9+1_amd64.deb .
-
-# ----
-
 mkdir dev
 mount -o bind /dev dev
 
@@ -90,10 +86,6 @@ d /var/usrlocal/src 0755 root root -
 d /var/mnt 0755 root root -
 d /run/media 0755 root root -
 EOF
-
-# ----
-
-ln -s usr/lib/systemd/system/ostree-remount.service usr/lib/systemd/system/local-fs.target.wants/
 
 # ----
 
