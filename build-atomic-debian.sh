@@ -18,7 +18,6 @@ multistrap -d $WORKDIR -f $STRAPCONF
 
 mount -o bind /dev dev
 mount -o bind /proc proc
-mount -o bind /sys sys
 
 cat > setup.sh <<EOF
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
@@ -31,7 +30,6 @@ rm setup.sh
 
 umount dev
 umount proc
-umount sys
 
 # ----
 
