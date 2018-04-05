@@ -16,7 +16,9 @@ multistrap -d $WORKDIR -f $STRAPCONF
 
 # ----
 
-cp -a /dev/* dev/
+mount -o bind /dev dev
+mount -o bind /proc proc
+mount -o bind /sys sys
 
 cat > setup.sh <<EOF
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
@@ -26,6 +28,10 @@ dpkg --configure -a
 EOF
 chroot . /bin/bash /setup.sh
 rm setup.sh
+
+umount dev
+umount proc
+umount sys
 
 # ----
 
@@ -55,7 +61,6 @@ ln -s var/srv srv
 ln -s var/roothome root
 ln -s var/local usr/local
 ln -s var/mnt mnt
-#ln -s sysroot/tmp tmp
 ln -s run/media media
 
 # ----

@@ -12,6 +12,7 @@ docker run \
     --rm \
     -v $OSTREE:/ostree:z \
     -v $CONF:/conf:ro,z \
+    --cap-add=SYS_ADMIN
     $TAG \
     /conf \
     $REF
