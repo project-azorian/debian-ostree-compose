@@ -2,9 +2,9 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "fkrull/fedora28-atomic-workstation"
+  config.vm.box = "fedora/27-atomic-host"
 
-  config.vm.provision "shell", inline: <<-EOF
-    systemctl enable --now docker
-  EOF
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+  end
 end
