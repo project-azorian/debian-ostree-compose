@@ -9,4 +9,8 @@ Vagrant.configure("2") do |config|
     vb.memory = 2048
     vb.gui = true
   end
+
+  config.vm.provision :shell, inline: <<-SHELL
+    pip3 install https://gitlab.com/fkrull/deploy-ostree/-/archive/master/deploy-ostree-master.tar.bz2
+  SHELL
 end

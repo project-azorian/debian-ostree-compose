@@ -1,8 +1,5 @@
 #!/bin/sh
 set -eu
-OSTREE=/home/vagrant/ostree
-REF=debian/9/x86_64/minimal
-OS=debian
+JSON=/home/vagrant/sync/deploy.json
 
-ostree pull-local $OSTREE $REF
-ostree admin deploy --os=$OS --karg=root=/dev/mapper/atomicos-root --karg=quiet $REF
+deploy-ostree $JSON

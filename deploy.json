@@ -1,0 +1,24 @@
+{
+    "path": "/home/vagrant/ostree",
+    "ref": "debian/9/x86_64/minimal",
+    "remote": "local-build",
+
+    "default-provisioners": [
+        {
+            "provisioner": "etc-fstab"
+        },
+        {
+            "provisioner": "etc-network-interfaces",
+            "interface": "enp0s3"
+        },
+        {
+            "provisioner": "root-password",
+            "password": "vagrant"
+        },
+        {
+            "provisioner": "create-user",
+            "username": "vagrant",
+            "password": "vagrant"
+        }
+    ]
+}
