@@ -2,6 +2,7 @@
     "path": "/home/vagrant/ostree",
     "ref": "debian/9/x86_64/minimal",
     "remote": "local-build",
+    "stateroot": "debian-minimal",
 
     "default-provisioners": [
         {
