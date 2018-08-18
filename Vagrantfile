@@ -11,6 +11,6 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision :shell, inline: <<-SHELL
-    pip3 install https://gitlab.com/fkrull/deploy-ostree/-/archive/master/deploy-ostree-master.tar.bz2
+    pip3 install "https://gitlab.com/fkrull/deploy-ostree/-/jobs/artifacts/master/raw/dist/deploy_ostree-1.0.0-py3-none-any.whl?job=build-wheel"
   SHELL
 end
