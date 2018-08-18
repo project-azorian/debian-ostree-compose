@@ -18,7 +18,8 @@
         {
             "provisioner": "create-user",
             "username": "vagrant",
-            "password": "vagrant"
+            "password": "vagrant",
+            "shell": "/usr/bin/bash"
         }
     ]
 }
