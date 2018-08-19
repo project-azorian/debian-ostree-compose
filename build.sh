@@ -4,7 +4,8 @@ IMAGEDIR=/vagrant
 TAG=atomic-debian
 OSTREE_BUILD=/home/vagrant/ostree-build
 OSTREE_PUBLISH=/home/vagrant/ostree-publish
-CONF=/vagrant/strap.conf
+
+CONF=/vagrant/stretch-minimal/strap.conf
 REF=debian/9/x86_64/minimal
 
 docker build -t $TAG $IMAGEDIR
