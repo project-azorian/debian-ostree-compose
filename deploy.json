@@ -21,6 +21,11 @@
             "username": "vagrant",
             "password": "vagrant",
             "shell": "/usr/bin/bash"
+        },
+        {
+            "provisioner": "authorized-keys",
+            "path": "/home/vagrant/.ssh/authorized_keys",
+            "user": "vagrant"
         }
     ]
 }
