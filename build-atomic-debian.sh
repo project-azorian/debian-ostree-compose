@@ -36,9 +36,11 @@ umount proc
 # ----
 
 mv var/lib/dpkg usr/lib/dpkg-db
+mv var/cache/debconf usr/lib/debconf-db
 
-cat > usr/lib/tmpfiles.d/dpkg-db.conf <<EOF
+cat > usr/lib/tmpfiles.d/debstate.conf <<EOF
 L /var/lib/dpkg - - - - ../../usr/lib/dpkg-db
+L /var/cache/debconf - - - - ../../usr/lib/debconf-db
 EOF
 
 # ----
