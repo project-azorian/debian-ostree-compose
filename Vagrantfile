@@ -4,6 +4,8 @@
 Vagrant.configure("2") do |config|
   config.vm.define "build" do |config|
     config.vm.box = "bento/debian-9"
+    config.vm.network :private_network, ip: "192.168.60.10"
+
     config.vm.provider :virtualbox do |vb|
       vb.cpus = 2
       vb.memory = 2048
@@ -28,6 +30,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "deploy" do |config|
     config.vm.box = "fedora/28-atomic-host"
+    config.vm.network :private_network, type: :dhcp
+
     config.vm.provider :virtualbox do |vb|
       vb.gui = true
     end
