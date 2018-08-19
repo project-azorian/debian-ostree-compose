@@ -2,7 +2,7 @@
 set -eu
 SYNCDIR=/home/vagrant/sync
 TAG=atomic-debian
-OSTREE_BUILD=/home/vagrant/ostree
+OSTREE_BUILD=/home/vagrant/ostree-build
 OSTREE_PUBLISH=/home/vagrant/ostree-publish
 CONF=$SYNCDIR/strap.conf
 REF=debian/9/x86_64/minimal

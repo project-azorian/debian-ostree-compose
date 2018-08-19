@@ -94,5 +94,4 @@ rm -r boot/* initrd.img initrd.img.old vmlinuz vmlinuz.old
 
 # ----
 
-ostree init --repo=/ostree
 ostree commit --repo=/ostree -b $REF $WORKDIR
