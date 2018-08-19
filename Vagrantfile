@@ -17,7 +17,6 @@ Vagrant.configure("2") do |config|
     ostree init --repo=/home/vagrant/ostree-build
     ostree init --repo=/home/vagrant/ostree-publish --mode=archive
 
-    setenforce 0
     docker run -d \
       --restart=always \
       --name http \
