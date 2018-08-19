@@ -1,5 +1,5 @@
 {
-    "path": "/home/vagrant/ostree",
+    "path": "/home/vagrant/ostree-publish",
     "ref": "debian/9/x86_64/minimal",
     "remote": "local-build",
     "stateroot": "debian-minimal",
