@@ -26,6 +26,10 @@
             "provisioner": "authorized-keys",
             "path": "/home/vagrant/.ssh/authorized_keys",
             "user": "vagrant"
+        },
+        {
+            "provisioner": "passwordless-sudo",
+            "user": "vagrant"
         }
     ]
 }
