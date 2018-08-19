@@ -19,14 +19,12 @@ multistrap -d $WORKDIR -f $STRAPCONF
 mount -o bind /dev dev
 mount -o bind /proc proc
 
-cat > setup.sh <<EOF
+chroot . /bin/bash -i <<EOF
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 export LC_ALL=C LANGUAGE=C LANG=C
 /var/lib/dpkg/info/dash.preinst install
 dpkg --configure -a
 EOF
-chroot . /bin/bash /setup.sh
-rm setup.sh
 
 umount dev
 umount proc
