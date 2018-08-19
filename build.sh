@@ -1,13 +1,13 @@
 #!/bin/sh
 set -eu
-SYNCDIR=/home/vagrant/sync
+IMAGEDIR=/vagrant
 TAG=atomic-debian
 OSTREE_BUILD=/home/vagrant/ostree-build
 OSTREE_PUBLISH=/home/vagrant/ostree-publish
-CONF=$SYNCDIR/strap.conf
+CONF=/vagrant/strap.conf
 REF=debian/9/x86_64/minimal
 
-docker build -t $TAG $SYNCDIR
+docker build -t $TAG $IMAGEDIR
 docker run \
     -it \
     --rm \
