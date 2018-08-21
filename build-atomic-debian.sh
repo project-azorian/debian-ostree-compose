@@ -1,18 +1,24 @@
 #!/bin/bash
 set -eux
 
-STRAPCONF=$1
-REF=$2
+CONFIG=$1
+OSTREE=$2
 
-WORKDIR=/work/debian
+# ----
 
-rm -rf $WORKDIR
-mkdir -p $WORKDIR
+CONFIG_DIR=$(dirname $CONFIG)
+
+STRAPCONF=$(jq -r '.bootstrap.multistrap_config' < $1)
+REF=$(jq -r '.ref' < $1)
+
+WORKDIR=/var/tmp/debian-ostree-compose.$$
+
+mkdir $WORKDIR
 cd $WORKDIR
 
 # ----
 
-multistrap -d $WORKDIR -f $STRAPCONF
+multistrap -d $WORKDIR -f $CONFIG_DIR/$STRAPCONF
 
 # ----
 
@@ -100,4 +106,4 @@ rm -r boot/* initrd.img initrd.img.old vmlinuz vmlinuz.old
 
 # ----
 
-ostree commit --repo=/ostree -b $REF $WORKDIR
+ostree commit --repo=$OSTREE -b $REF $WORKDIR

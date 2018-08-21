@@ -5,18 +5,20 @@ TAG=atomic-debian
 OSTREE_BUILD=/home/vagrant/ostree-build
 OSTREE_PUBLISH=/home/vagrant/ostree-publish
 
-CONF=/vagrant/stretch-minimal/strap.conf
-REF=debian/9/x86_64/minimal
+COMPOSE=/vagrant/stretch-minimal/compose.json
+
+COMPOSE_DIR=$(dirname $COMPOSE)
+COMPOSE_FILE=$(basename $COMPOSE)
 
 docker build -t $TAG $IMAGEDIR
 docker run \
     -it \
     --rm \
-    -v $OSTREE_BUILD:/ostree:z \
-    -v $CONF:/conf:ro,z \
+    -v $OSTREE_BUILD:/ostree \
+    -v $COMPOSE_DIR:/config:ro \
     --privileged \
     $TAG \
-    /conf \
-    $REF
+    /config/$COMPOSE_FILE \
+    /ostree
 
-ostree pull-local --repo=$OSTREE_PUBLISH $OSTREE_BUILD $REF
+ostree pull-local --repo=$OSTREE_PUBLISH $OSTREE_BUILD $(jq -r '.ref' < $COMPOSE)
