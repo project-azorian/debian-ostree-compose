@@ -23,7 +23,8 @@ Vagrant.configure("2") do |config|
     config.vm.provision :docker do |d|
       d.run "http", image: "nginx:1-alpine", args: [
         "-p 8000:80",
-        "-v /home/vagrant/ostree-publish:/usr/share/nginx/html:ro",
+        "-v /home/vagrant/ostree-publish:/usr/share/nginx/html/ostree:ro",
+        "-v /vagrant/deploy:/usr/share/nginx/html/deploy:ro",
     ].join(" ")
     end
   end
