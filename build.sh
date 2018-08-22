@@ -21,4 +21,4 @@ docker run \
     /config/$COMPOSE_FILE \
     /ostree
 
-ostree pull-local --repo=$OSTREE_PUBLISH $OSTREE_BUILD $(jq -r '.ref' < $COMPOSE)
+ostree pull-local --repo=$OSTREE_PUBLISH $OSTREE_BUILD
