@@ -30,10 +30,10 @@ export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 export LC_ALL=C LANGUAGE=C LANG=C
 /var/lib/dpkg/info/dash.preinst install
 
-debconf-set-selections <<DEB
-locales locales/locales_to_be_generated multiselect All locales
-locales locales/default_environment_locale      select  None
-DEB
+#debconf-set-selections <<DEB
+#locales locales/locales_to_be_generated multiselect All locales
+#locales locales/default_environment_locale      select  None
+#DEB
 
 dpkg --configure -a
 EOF
