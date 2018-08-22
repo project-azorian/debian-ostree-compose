@@ -1,0 +1,6 @@
+{
+    "ref": "debian/9/x86_64/desktop",
+    "bootstrap": {
+        "multistrap_config": "strap.conf"
+    }
+}

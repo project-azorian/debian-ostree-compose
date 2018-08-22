@@ -1,0 +1,35 @@
+{
+    "url": "http://192.168.60.10:8000/ostree/",
+    "ref": "debian/9/x86_64/desktop",
+    "remote": "local-build",
+    "stateroot": "stretch-desktop",
+
+    "default-provisioners": [
+        {
+            "provisioner": "etc-fstab"
+        },
+        {
+            "provisioner": "etc-network-interfaces",
+            "interface": "enp0s3"
+        },
+        {
+            "provisioner": "root-password",
+            "password": "vagrant"
+        },
+        {
+            "provisioner": "create-user",
+            "username": "vagrant",
+            "password": "vagrant",
+            "shell": "/usr/bin/bash"
+        },
+        {
+            "provisioner": "authorized-keys",
+            "path": "/home/vagrant/.ssh/authorized_keys",
+            "user": "vagrant"
+        },
+        {
+            "provisioner": "passwordless-sudo",
+            "user": "vagrant"
+        }
+    ]
+}
