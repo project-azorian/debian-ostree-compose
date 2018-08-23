@@ -16,7 +16,6 @@ Vagrant.configure("2") do |config|
       apt-get update
       apt-get install -y ostree
 
-      ostree init --repo=/home/vagrant/ostree-build
       ostree init --repo=/home/vagrant/ostree-publish --mode=archive
     SHELL
 

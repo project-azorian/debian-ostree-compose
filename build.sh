@@ -2,8 +2,7 @@
 set -eu
 IMAGEDIR=/vagrant
 TAG=atomic-debian
-OSTREE_BUILD=/home/vagrant/ostree-build
-OSTREE_PUBLISH=/home/vagrant/ostree-publish
+OSTREE=/home/vagrant/ostree-publish
 
 COMPOSE=$1
 
@@ -14,11 +13,9 @@ docker build -t $TAG $IMAGEDIR
 docker run \
     -it \
     --rm \
-    -v $OSTREE_BUILD:/ostree \
+    -v $OSTREE:/ostree \
     -v $COMPOSE_DIR:/config:ro \
     --privileged \
     $TAG \
     /config/$COMPOSE_FILE \
     /ostree
-
-ostree pull-local --repo=$OSTREE_PUBLISH $OSTREE_BUILD
