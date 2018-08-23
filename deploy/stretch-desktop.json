@@ -9,10 +9,6 @@
             "provisioner": "etc-fstab"
         },
         {
-            "provisioner": "etc-network-interfaces",
-            "interface": "enp0s3"
-        },
-        {
             "provisioner": "root-password",
             "password": "vagrant"
         },
