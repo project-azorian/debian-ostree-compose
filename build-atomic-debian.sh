@@ -8,8 +8,19 @@ OSTREE=$2
 
 CONFIG_DIR=$(dirname $CONFIG)
 
-STRAPCONF=$(jq -r '.bootstrap.multistrap_config' < $1)
-REF=$(jq -r '.ref' < $1)
+STRAPCONF=$(jq -r '.bootstrap.multistrap_config' < $CONFIG)
+REF=$(jq -r '.ref' < $CONFIG)
+PRESEED_FILE=$(jq -r '.debconf_preseed' < $CONFIG)
+
+if [ "$PRESEED_FILE" != "null" ]; then
+    DEBCONF=$CONFIG_DIR/$PRESEED_FILE
+else
+    DEBCONF=/dev/null
+fi
+#    DEBCONF=$(cat $CONFIG_DIR/$DEBCONF_PRESEED)
+#else
+#    DEBCONF=""
+#fi
 
 WORKDIR=/var/tmp/debian-ostree-compose.$$
 
@@ -30,10 +41,9 @@ export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 export LC_ALL=C LANGUAGE=C LANG=C
 /var/lib/dpkg/info/dash.preinst install
 
-#debconf-set-selections <<DEB
-#locales locales/locales_to_be_generated multiselect All locales
-#locales locales/default_environment_locale      select  None
-#DEB
+debconf-set-selections <<DEB
+$(cat $DEBCONF)
+DEB
 
 dpkg --configure -a
 EOF

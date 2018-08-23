@@ -5,7 +5,7 @@ TAG=atomic-debian
 OSTREE_BUILD=/home/vagrant/ostree-build
 OSTREE_PUBLISH=/home/vagrant/ostree-publish
 
-COMPOSE=/vagrant/stretch-minimal/compose.json
+COMPOSE=$1
 
 COMPOSE_DIR=$(dirname $COMPOSE)
 COMPOSE_FILE=$(basename $COMPOSE)
