@@ -27,6 +27,8 @@ Vagrant.configure("2") do |config|
         "-v /vagrant/deploy:/usr/share/nginx/html/deploy:ro",
     ].join(" ")
     end
+
+    config.vm.provision :shell, run: :always, inline: "docker restart http"
   end
 
   config.vm.define "deploy" do |config|
