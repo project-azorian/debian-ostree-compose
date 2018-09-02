@@ -57,6 +57,10 @@ umount proc
 
 # ----
 
+#rm etc/machine-id
+
+# ----
+
 mv var/lib/dpkg usr/lib/dpkg-db
 mv var/cache/debconf usr/lib/debconf-db
 
