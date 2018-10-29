@@ -1,0 +1,24 @@
+url: http://192.168.60.10:8000/ostree/
+ref: ubuntu/bionic/x86_64/standard
+remote: local-build
+stateroot: bionic-standard
+default-provisioners:
+- provisioner: netplan
+  netplan_config: |
+    network:
+      version: 2
+      renderer: networkd
+      ethernets:
+        enp0s3:
+          dhcp4: true
+- provisioner: root-password
+  password: vagrant
+- provisioner: create-user
+  username: vagrant
+  password: vagrant
+  shell: "/usr/bin/bash"
+- provisioner: authorized-keys
+  path: "/home/vagrant/.ssh/authorized_keys"
+  user: vagrant
+- provisioner: passwordless-sudo
+  user: vagrant

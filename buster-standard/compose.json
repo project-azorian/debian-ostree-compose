@@ -1,6 +1,0 @@
-{
-    "ref": "debian/10/x86_64/standard",
-    "bootstrap": {
-        "multistrap_config": "strap.conf"
-    }
-}

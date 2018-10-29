@@ -1,6 +1,0 @@
-{
-    "ref": "debian/9/x86_64/minimal",
-    "bootstrap": {
-        "multistrap_config": "strap.conf"
-    }
-}

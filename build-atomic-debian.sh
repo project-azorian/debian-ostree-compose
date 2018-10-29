@@ -11,16 +11,13 @@ CONFIG_DIR=$(dirname $CONFIG)
 STRAPCONF=$(jq -r '.bootstrap.multistrap_config' < $CONFIG)
 REF=$(jq -r '.ref' < $CONFIG)
 PRESEED_FILE=$(jq -r '.debconf_preseed' < $CONFIG)
+POST_INSTALL_SCRIPT=$(jq -r '.postinstall_script' < $CONFIG)
 
 if [ "$PRESEED_FILE" != "null" ]; then
     DEBCONF=$CONFIG_DIR/$PRESEED_FILE
 else
     DEBCONF=/dev/null
 fi
-#    DEBCONF=$(cat $CONFIG_DIR/$DEBCONF_PRESEED)
-#else
-#    DEBCONF=""
-#fi
 
 WORKDIR=/var/tmp/debian-ostree-compose.$$
 
@@ -47,6 +44,14 @@ DEB
 
 dpkg --configure -a
 EOF
+
+if [ "$POST_INSTALL_SCRIPT" != "null" ]; then
+  chroot . /bin/bash -i <<EOF
+  export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
+  export LC_ALL=C LANGUAGE=C LANG=C
+  $(cat $CONFIG_DIR/$POST_INSTALL_SCRIPT)
+EOF
+fi
 
 umount dev
 umount proc

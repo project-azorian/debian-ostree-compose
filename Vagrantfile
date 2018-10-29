@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "deploy" do |config|
-    config.vm.box = "fedora/28-atomic-host"
+    config.vm.box = "fedora/prerelease-29-atomic-host"
     config.vm.network :private_network, type: :dhcp
 
     config.vm.provider :virtualbox do |vb|
@@ -43,7 +43,9 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision :shell, inline: <<-SHELL
       set -eux
-      pip3 install "https://gitlab.com/fkrull/deploy-ostree/-/jobs/artifacts/master/raw/dist/deploy_ostree-1.0.0-py3-none-any.whl?job=build-wheel"
+      rpm-ostree install git
+      rpm-ostree ex livefs
+      pip3 install git+https://github.com/project-azorian/deploy-ostree.git@yaml-input
     SHELL
   end
 end

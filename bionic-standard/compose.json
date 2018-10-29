@@ -1,0 +1,8 @@
+{
+    "ref": "ubuntu/bionic/x86_64/standard",
+    "bootstrap": {
+        "multistrap_config": "strap.conf"
+    },
+    "debconf_preseed": "preseed",
+    "postinstall_script": "postinstall.sh"
+}
